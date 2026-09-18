@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<!--
+  Sitio de demostración. Bértola Asesores es un negocio ficticio, creado como
+  plantilla de muestra para la biblioteca de WEBS NEGOCIOS. Los datos, las
+  fotografías (aquí, ilustraciones) y las opiniones son de muestra: no
+  corresponden a ninguna asesoría real de Betanzos. Ver README.md.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bértola Asesores — Gestoría fiscal, laboral y contable en Betanzos</title>
+<meta name="description" content="Bértola Asesores: gestoría fiscal, laboral, contable y de constitución de empresas en Betanzos (A Coruña). Trámites al día, con cita por WhatsApp. Sitio de demostración.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F2EDE1">
+<link rel="canonical" href="https://alvarotaiagu.github.io/plantilla-asesoria-sello-web/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bértola Asesores — Gestoría en Betanzos">
+<meta property="og:description" content="Fiscal, laboral, contable y constitución de empresas. Sitio de demostración de la biblioteca de plantillas.">
+<meta property="og:image" content="https://alvarotaiagu.github.io/plantilla-asesoria-sello-web/assets/img/logo/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/logo/icon-180.png">
+<link rel="manifest" href="manifest.json">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<script>
+/* Bloqueante y minúsculo a propósito: decide, antes de pintar, si el
+   movimiento está permitido (no depende de GSAP, que carga después con
+   defer). main.js añade "gsap-listo" más tarde, solo si confirma que GSAP
+   existe de verdad; hasta entonces los estados "ocultos" del CSS no se
+   activan y el contenido se ve completo. */
+(function(){
+  try{
+    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.documentElement.classList.add('js-motion');
+    }
+  }catch(e){}
+})();
+</script>
+<noscript><style>.cortina{ display:none !important; }</style></noscript>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<!-- Filtro de grano de tampón, compartido por todos los sellos de la página -->
+<svg class="sello-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="grano-tampon" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="11" result="ruido"/>
+      <feColorMatrix in="ruido" type="matrix"
+        values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.1 1.1 1.1 0 -0.62" result="mascara"/>
+      <feComposite in="SourceGraphic" in2="mascara" operator="in"/>
+    </filter>
+    <path id="arco-top-hero" d="M 20 110 A 90 90 0 0 1 200 110"/>
+    <path id="arco-bottom-hero" d="M 30 130 A 80 80 0 0 0 190 130"/>
+    <path id="arco-top-confianza" d="M 20 110 A 90 90 0 0 1 200 110"/>
+    <path id="arco-bottom-confianza" d="M 30 130 A 80 80 0 0 0 190 130"/>
+    <path id="arco-top-pie" d="M 20 110 A 90 90 0 0 1 200 110"/>
+    <path id="arco-bottom-pie" d="M 30 130 A 80 80 0 0 0 190 130"/>
+  </defs>
+</svg>
+
+<!-- Cortina de entrada: un sello grande golpea el papel y se retira -->
+<div class="cortina" id="cortina">
+  <div class="cortina-marca mono">Bértola Asesores</div>
+  <div class="cortina-sello" id="cortina-sello" aria-hidden="true">
+    <svg viewBox="0 0 220 220">
+      <circle class="sello-anillo grueso" cx="110" cy="110" r="96" filter="url(#grano-tampon)"/>
+      <circle class="sello-anillo fino" cx="110" cy="110" r="80" filter="url(#grano-tampon)"/>
+      <text class="sello-centro" x="110" y="122" font-size="30">AL DÍA</text>
+    </svg>
+  </div>
+  <div class="cortina-panel" id="cortina-panel"></div>
+</div>
+
+<div class="cursor-sello" id="cursor" aria-hidden="true"><span>Ver</span></div>
+
+<header class="cabecera">
+  <div class="container cabecera-fila">
+    <a class="marca" href="#inicio">
+      <svg class="marca-icono" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+        <circle class="sello-anillo grueso" cx="100" cy="100" r="92" filter="url(#grano-tampon)"/>
+        <circle class="sello-anillo fino" cx="100" cy="100" r="76" filter="url(#grano-tampon)"/>
+        <g fill="var(--rojo)" filter="url(#grano-tampon)">
+          <rect x="70" y="56" width="14" height="88" rx="4"/>
+          <path fill-rule="evenodd" d="M78 56 h20 c16 0 26 9 26 22 c0 10 -6 17 -15 20 c11 3 18 11 18 22 c0 14 -11 24 -28 24 h-21 z
+             M84 68 v26 h14 c9 0 14 -5 14 -13 c0 -8 -5 -13 -14 -13 z
+             M84 106 v26 h16 c10 0 16 -5 16 -13 c0 -8 -6 -13 -16 -13 z"/>
+        </g>
+      </svg>
+      <span>
+        <span class="marca-nombre">Bértola Asesores</span>
+        <span class="marca-lugar">Betanzos · A Coruña</span>
+      </span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Principal">
+      <ul>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#calendario">Calendario fiscal</a></li>
+        <li><a href="#confianza">Opiniones</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="cabecera-acciones">
+      <a class="btn btn-rojo btn-mag" data-wa href="https://wa.me/34611000045?text=Hola%2C%20querr%C3%ADa%20pedir%20cita%20con%20B%C3%A9rtola%20Asesores" data-cursor="Escribir">Pedir cita</a>
+      <button class="menu-boton" id="menu-boton" aria-expanded="false" aria-controls="menu-movil">
+        <span class="icono-menu"><span></span><span></span><span></span></span>
+        <span class="sr-only">Abrir menú</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="menu-movil" id="menu-movil" aria-label="Menú móvil">
+  <a href="#servicios">Servicios</a>
+  <a href="#calendario">Calendario fiscal</a>
+  <a href="#confianza">Opiniones</a>
+  <a href="#equipo">Equipo</a>
+  <a href="#contacto">Contacto</a>
+  <a class="btn btn-rojo" data-wa href="https://wa.me/34611000045?text=Hola%2C%20querr%C3%ADa%20pedir%20cita%20con%20B%C3%A9rtola%20Asesores">Pedir cita por WhatsApp</a>
+</nav>
+
+<main id="contenido">
+
+  <!-- 1. PORTADA -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-texto">
+        <p class="eyebrow">Betanzos · A Coruña</p>
+        <h1 class="hero-titular titular" data-char-reveal>
+          <span class="linea"><span class="palabra">Lo</span> <span class="palabra">que</span> <span class="palabra">se</span></span>
+          <span class="linea"><span class="palabra">presenta</span> <span class="palabra">a</span> <span class="palabra">tiempo,</span></span>
+          <span class="linea"><span class="palabra">se</span> <span class="palabra">sella.</span></span>
+        </h1>
+        <p class="lead">Fiscal, laboral, contable y constitución de empresas para autónomos y pymes de Betanzos y su comarca. Cada trámite que llevamos, resuelto y cerrado — sin papeleo pendiente sobre la mesa.</p>
+        <div class="hero-cta">
+          <a class="btn btn-rojo btn-mag" data-wa href="https://wa.me/34611000045?text=Hola%2C%20querr%C3%ADa%20pedir%20cita%20con%20B%C3%A9rtola%20Asesores">Pedir cita</a>
+          <a class="btn btn-fantasma" href="#servicios">Ver servicios</a>
+        </div>
+        <div class="hero-cifras">
+          <span class="cifra"><span class="cifra-num" data-contador data-hasta="15">15</span><span class="cifra-lbl">Años de oficio</span></span>
+          <span class="cifra"><span class="cifra-num" data-contador data-hasta="9">9</span><span class="cifra-lbl">Modelos que seguimos cada año</span></span>
+          <span class="cifra"><span class="cifra-num" data-contador data-hasta="86">86</span><span class="cifra-lbl">Expedientes activos</span></span>
+        </div>
+      </div>
+
+      <div class="hero-escena">
+        <div class="hero-papel">
+          <p class="hero-expediente mono">Expediente n.º 26-0417<br>Bértola Asesores</p>
+          <div class="hero-sello-wrap sello sello-grande" id="hero-sello" data-sello>
+            <div class="sello-bleed"></div>
+            <svg class="sello-svg" viewBox="0 0 220 220" aria-hidden="true">
+              <circle class="sello-anillo grueso" cx="110" cy="110" r="96" filter="url(#grano-tampon)"/>
+              <circle class="sello-anillo fino" cx="110" cy="110" r="80" filter="url(#grano-tampon)"/>
+              <text class="sello-texto" font-size="12"><textPath href="#arco-top-hero" startOffset="50%" text-anchor="middle">BÉRTOLA ASESORES</textPath></text>
+              <text class="sello-texto" font-size="10"><textPath href="#arco-bottom-hero" startOffset="50%" text-anchor="middle">BETANZOS · A CORUÑA</textPath></text>
+              <text class="sello-centro" x="110" y="122" font-size="30">AL DÍA</text>
+            </svg>
+          </div>
+          <div class="hero-linea-firma"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. CINTA / MARQUEE -->
+  <section aria-label="Áreas de servicio" style="padding-block:0">
+    <div class="cinta">
+      <div class="cinta-pista" id="cinta-pista">
+        <div class="cinta-grupo" aria-hidden="false">
+          <span>Fiscal</span><span>Laboral</span><span>Contable</span><span>Constitución de empresas</span><span>Subvenciones</span><span>Herencias</span><span>Requerimientos de Hacienda</span>
+        </div>
+        <div class="cinta-grupo" aria-hidden="true">
+          <span>Fiscal</span><span>Laboral</span><span>Contable</span><span>Constitución de empresas</span><span>Subvenciones</span><span>Herencias</span><span>Requerimientos de Hacienda</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SERVICIOS -->
+  <section id="servicios">
+    <div class="container">
+      <p class="eyebrow">Lo que llevamos</p>
+      <h2 class="titular fs-h2" style="font-size:var(--fs-h2); margin-top:.8rem;" data-char-reveal>
+        <span class="linea"><span class="palabra">Cinco</span> <span class="palabra">frentes,</span></span>
+        <span class="linea"><span class="palabra">un</span> <span class="palabra">único</span> <span class="palabra">expediente.</span></span>
+      </h2>
+      <p class="lead" style="margin-top:1rem;">Cada área se resuelve por separado, pero vive en la misma carpeta: la tuya. Cuando cerramos algo, aquí es donde se nota.</p>
+
+      <ul class="servicios-lista" id="servicios-lista">
+
+        <li class="servicio-item">
+          <div class="servicio-tarjeta" data-servicio>
+            <div>
+              <span class="servicio-num">01 · Fiscal</span>
+              <h3>Impuestos al día</h3>
+              <p class="texto-apagado">IRPF, IVA e Impuesto de Sociedades llevados en trimestre, sin sorpresas en enero. Revisamos cada modelo antes de presentarlo, no después.</p>
+              <ul class="servicio-lista-detalle">
+                <li>IVA trimestral (303)</li><li>Pago fraccionado (130/131)</li><li>Sociedades (200)</li><li>Requerimientos de Hacienda</li>
+              </ul>
+            </div>
+            <div class="servicio-estado" data-sello-trigger>
+              <div class="sello sello-mini" data-sello>
+                <div class="sello-bleed"></div>
+                <svg class="sello-svg" viewBox="0 0 220 220" aria-hidden="true">
+                  <circle class="sello-anillo grueso" cx="110" cy="110" r="96" filter="url(#grano-tampon)"/>
+                  <circle class="sello-anillo fino" cx="110" cy="110" r="80" filter="url(#grano-tampon)"/>
+                  <text class="sello-centro" x="110" y="124" font-size="34">OK</text>
+                </svg>
+              </div>
+              Presentado
+            </div>
+          </div>
+        </li>
+
+        <li class="servicio-item">
+          <div class="servicio-tarjeta" data-servicio>
+            <div>
+              <span class="servicio-num">02 · Laboral</span>
+              <h3>Nóminas y personal</h3>
+              <p class="texto-apagado">Altas, bajas, contratos y nóminas dentro de plazo. Un solo interlocutor para todo lo que tenga que ver con tu plantilla.</p>
+              <ul class="servicio-lista-detalle">
+                <li>Nóminas y seguros sociales</li><li>Contratos y altas en la TGSS</li><li>Convenio y calendario laboral</li>
+              </ul>
+            </div>
+            <div class="servicio-estado" data-sello-trigger>
+              <div class="sello sello-mini" data-sello>
+                <div class="sello-bleed"></div>
+                <svg class="sello-svg" viewBox="0 0 220 220" aria-hidden="true">
+                  <circle class="sello-anillo grueso" cx="110" cy="110" r="96" filter="url(#grano-tampon)"/>
+                  <circle class="sello-anillo fino" cx="110" cy="110" r="80" filter="url(#grano-tampon)"/>
+                  <text class="sello-centro" x="110" y="124" font-size="34">OK</text>
+                </svg>
+              </div>
+              Presentado
+            </div>
+          </div>
+        </li>
+
+        <li class="servicio-item">
+          <div class="servicio-tarjeta" data-servicio>
+            <div>
+              <span class="servicio-num">03 · Contable</span>
+              <h3>Cuentas claras</h3>
+              <p class="texto-apagado">Contabilidad llevada al día, libros oficiales y cuentas anuales listas antes del cierre del ejercicio, no la última semana.</p>
+              <ul class="servicio-lista-detalle">
+                <li>Contabilidad mensual</li><li>Libros oficiales</li><li>Cuentas anuales y depósito en el Registro</li>
+              </ul>
+            </div>
+            <div class="servicio-estado" data-sello-trigger>
+              <div class="sello sello-mini" data-sello>
+                <div class="sello-bleed"></div>
+                <svg class="sello-svg" viewBox="0 0 220 220" aria-hidden="true">
+                  <circle class="sello-anillo grueso" cx="110" cy="110" r="96" filter="url(#grano-tampon)"/>
+                  <circle class="sello-anillo fino" cx="110" cy="110" r="80" filter="url(#grano-tampon)"/>
+                  <text class="sello-centro" x="110" y="124" font-size="34">OK</text>
+                </svg>
+              </div>
+              Presentado
+            </div>
+          </div>
+        </li>
+
+        <li class="servicio-item">
+          <div class="servicio-tarjeta" data-servicio>
+            <div>
+              <span class="servicio-num">04 · Constitución</span>
+              <h3>Alta desde cero</h3>
+              <p class="texto-apagado">Te ayudamos a decidir entre autónomo o sociedad y hacemos todo el trámite: notaría, Registro Mercantil, Hacienda y Seguridad Social.</p>
+              <ul class="servicio-lista-detalle">
+                <li>Alta de autónomos</li><li>Constitución de S.L.</li><li>Trámites con notaría y Registro</li>
+              </ul>
+            </div>
+            <div class="servicio-estado" data-sello-trigger>
+              <div class="sello sello-mini" data-sello>
+                <div class="sello-bleed"></div>
+                <svg class="sello-svg" viewBox="0 0 220 220" aria-hidden="true">
+                  <circle class="sello-anillo grueso" cx="110" cy="110" r="96" filter="url(#grano-tampon)"/>
+                  <circle class="sello-anillo fino" cx="110" cy="110" r="80" filter="url(#grano-tampon)"/>
+                  <text class="sello-centro" x="110" y="124" font-size="34">OK</text>
+                </svg>
+              </div>
+              Presentado
+            </div>
+          </div>
+        </li>
+
+        <li class="servicio-item">
+          <div class="servicio-tarjeta" data-servicio>
+            <div>
+              <span class="servicio-num">05 · Trámites</span>
+              <h3>La Administración, resuelta</h3>
+              <p class="texto-apagado">Subvenciones, herencias, requerimientos y cualquier papel que llegue con sello oficial. Lo leemos, lo entendemos y te decimos qué hace falta.</p>
+              <ul class="servicio-lista-detalle">
+                <li>Subvenciones y ayudas</li><li>Herencias y sucesiones</li><li>Recursos y alegaciones</li>
+              </ul>
+            </div>
+            <div class="servicio-estado" data-sello-trigger>
+              <div class="sello sello-mini" data-sello>
+                <div class="sello-bleed"></div>
+                <svg class="sello-svg" viewBox="0 0 220 220" aria-hidden="true">
+                  <circle class="sello-anillo grueso" cx="110" cy="110" r="96" filter="url(#grano-tampon)"/>
+                  <circle class="sello-anillo fino" cx="110" cy="110" r="80" filter="url(#grano-tampon)"/>
+                  <text class="sello-centro" x="110" y="124" font-size="34">OK</text>
+                </svg>
+              </div>
+              Presentado
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. CALENDARIO FISCAL -->
+  <section id="calendario" class="calendario">
+    <div class="container">
+      <p class="eyebrow">Ejercicio natural</p>
+      <h2 class="titular" style="font-size:var(--fs-h2); margin-top:.8rem;" data-char-reveal>
+        <span class="linea"><span class="palabra">El</span> <span class="palabra">calendario</span></span>
+        <span class="linea"><span class="palabra">que</span> <span class="palabra">llevamos</span> <span class="palabra">en</span> <span class="palabra">el</span> <span class="palabra">despacho.</span></span>
+      </h2>
+      <p class="lead calendario-intro">Estos son los plazos generales de la AEAT para un autónomo o una pyme en régimen general. Cuando presentamos un modelo dentro de plazo, le ponemos el sello. La fecha de hoy la pone tu propio navegador — no hay nada inventado aquí.</p>
+
+      <div class="calendario-tabla" id="calendario-tabla" role="table" aria-label="Calendario fiscal del ejercicio">
+        <!-- filas generadas por main.js a partir de CALENDARIO_AEAT, con el
+             estado (abierto/cerrado) calculado contra la fecha real del
+             sistema: por eso este bloque necesita JavaScript. -->
+      </div>
+      <noscript>
+        <ul class="calendario-nota-lista">
+          <li>30 de enero — IVA, retenciones y pago fraccionado (4º trimestre) y resumen anual del IVA (modelos 303/130/131/111/115/390)</li>
+          <li>31 de enero — Resumen anual de retenciones (modelo 190)</li>
+          <li>Último día de febrero — Operaciones con terceros (modelo 347)</li>
+          <li>20 de abril — IVA, retenciones y pago fraccionado (1er trimestre)</li>
+          <li>Abril a junio — Campaña de la Renta (fechas exactas según la AEAT de cada año)</li>
+          <li>20 de julio — IVA, retenciones y pago fraccionado (2º trimestre)</li>
+          <li>25 de julio — Impuesto sobre Sociedades (modelo 200)</li>
+          <li>20 de octubre — IVA, retenciones y pago fraccionado (3er trimestre)</li>
+        </ul>
+        <p>Activa JavaScript para ver qué plazos están abiertos o cerrados según la fecha de hoy.</p>
+      </noscript>
+
+      <p class="texto-apagado calendario-nota mono" style="font-size:.78rem;">* Calendario orientativo con los plazos generales de la AEAT (régimen general, sin pagos fraccionados especiales ni calendarios autonómicos). La campaña de Renta cambia de fecha exacta cada año; consulta siempre la vigente. No sustituye el calendario oficial del contribuyente.</p>
+    </div>
+  </section>
+
+  <!-- 5. CONFIANZA / RESEÑAS -->
+  <section id="confianza">
+    <div class="container">
+      <div class="confianza-cab">
+        <div class="confianza-sello-wrap">
+          <div class="sello sello-grande" data-sello>
+            <div class="sello-bleed"></div>
+            <svg class="sello-svg" viewBox="0 0 220 220" aria-hidden="true">
+              <circle class="sello-anillo grueso" cx="110" cy="110" r="96" filter="url(#grano-tampon)"/>
+              <circle class="sello-anillo fino" cx="110" cy="110" r="80" filter="url(#grano-tampon)"/>
+              <text class="sello-texto" font-size="12"><textPath href="#arco-top-confianza" startOffset="50%" text-anchor="middle">CONFIANZA</textPath></text>
+              <text class="sello-texto" font-size="10"><textPath href="#arco-bottom-confianza" startOffset="50%" text-anchor="middle">DE TRATO CERCANO</textPath></text>
+              <text class="sello-centro" x="110" y="122" font-size="26">GARANTÍA</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <p class="eyebrow">Quien ha pasado por aquí</p>
+          <h2 class="titular" style="font-size:var(--fs-h2); margin-top:.8rem;" data-char-reveal>
+            <span class="linea"><span class="palabra">No</span> <span class="palabra">prometemos</span></span>
+            <span class="linea"><span class="palabra">estrellas,</span> <span class="palabra">prometemos</span></span>
+            <span class="linea"><span class="palabra">plazos.</span></span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="testimonios">
+        <article class="testimonio">
+          <blockquote>«Llevo la tienda yo sola y no tenía cabeza para Hacienda. Desde que estoy con Bértola no he vuelto a mirar el calendario: me avisan ellos.»</blockquote>
+          <footer>
+            <span class="testimonio-avatar" aria-hidden="true">M</span>
+            <span class="testimonio-nombre">Manuela<span>Comercio, Betanzos</span></span>
+          </footer>
+        </article>
+        <article class="testimonio">
+          <blockquote>«Monté el bar como autónomo y ellos hicieron todo el alta: notaría, Hacienda, Seguridad Social. En diez días estaba dado de alta y con las nóminas listas.»</blockquote>
+          <footer>
+            <span class="testimonio-avatar" aria-hidden="true">X</span>
+            <span class="testimonio-nombre">Xurxo<span>Hostelería, Betanzos</span></span>
+          </footer>
+        </article>
+        <article class="testimonio">
+          <blockquote>«Nos llegó un requerimiento de Hacienda por una herencia y no entendíamos nada. Nos lo explicaron en una llamada y lo llevaron ellos de principio a fin.»</blockquote>
+          <footer>
+            <span class="testimonio-avatar" aria-hidden="true">C</span>
+            <span class="testimonio-nombre">Cristina y Brais<span>Particulares, Paderne</span></span>
+          </footer>
+        </article>
+        <article class="testimonio">
+          <blockquote>«Dudaba entre autónomo y sociedad limitada. Me sentaron media hora, me hicieron los números de las dos opciones y elegí con datos, no a ciegas.»</blockquote>
+          <footer>
+            <span class="testimonio-avatar" aria-hidden="true">Ó</span>
+            <span class="testimonio-nombre">Óscar<span>Constituyó su S.L. en 2025</span></span>
+          </footer>
+        </article>
+      </div>
+
+      <p class="texto-apagado confianza-aviso mono" style="font-size:.76rem;">Testimonios de muestra, escritos para esta plantilla — no proceden de Google, TripAdvisor ni de ninguna otra plataforma. Bértola Asesores es un negocio ficticio.</p>
+    </div>
+  </section>
+
+  <!-- 6. EQUIPO -->
+  <section id="equipo">
+    <div class="container">
+      <p class="eyebrow">Quién firma</p>
+      <h2 class="titular" style="font-size:var(--fs-h2); margin-top:.8rem;" data-char-reveal>
+        <span class="linea"><span class="palabra">Dos</span> <span class="palabra">personas,</span></span>
+        <span class="linea"><span class="palabra">un</span> <span class="palabra">único</span> <span class="palabra">criterio.</span></span>
+      </h2>
+
+      <div class="equipo-lista">
+        <article class="equipo-tarjeta">
+          <div class="equipo-retrato">
+            <svg viewBox="0 0 300 375" role="img" aria-label="Ilustración de Xoana Bértola Leis">
+              <rect width="300" height="375" fill="#EAE3D3"/>
+              <circle cx="150" cy="150" r="72" fill="#1F2A24"/>
+              <path d="M60 375 C60 270 110 235 150 235 C190 235 240 270 240 375 Z" fill="#1F2A24"/>
+              <circle cx="150" cy="150" r="72" fill="none" stroke="#A8503E" stroke-width="3" filter="url(#grano-tampon)"/>
+              <text x="150" y="345" text-anchor="middle" font-family="Space Mono, monospace" font-size="11" letter-spacing="2" fill="#A8503E">EXPEDIENTE 01</text>
+            </svg>
+          </div>
+          <h3 class="equipo-nombre">Xoana Bértola Leis</h3>
+          <p class="equipo-cargo">Directora · Asesora fiscal</p>
+          <p class="equipo-bio">Economista de formación, lleva quince años metida en el día a día fiscal de autónomos y pymes de la comarca. Fundó el despacho en 2011 con la idea de que Hacienda se explica en gallego llano, no en jerga.</p>
+        </article>
+
+        <article class="equipo-tarjeta">
+          <div class="equipo-retrato">
+            <svg viewBox="0 0 300 375" role="img" aria-label="Ilustración de Diego Cortiñas Vidal">
+              <rect width="300" height="375" fill="#EAE3D3"/>
+              <circle cx="150" cy="150" r="72" fill="#1F2A24"/>
+              <path d="M55 375 C55 265 108 235 150 235 C192 235 245 265 245 375 Z" fill="#1F2A24"/>
+              <circle cx="150" cy="150" r="72" fill="none" stroke="#A8503E" stroke-width="3" filter="url(#grano-tampon)"/>
+              <text x="150" y="345" text-anchor="middle" font-family="Space Mono, monospace" font-size="11" letter-spacing="2" fill="#A8503E">EXPEDIENTE 02</text>
+            </svg>
+          </div>
+          <h3 class="equipo-nombre">Diego Cortiñas Vidal</h3>
+          <p class="equipo-cargo">Asesor laboral y mercantil</p>
+          <p class="equipo-bio">Graduado social, lleva las nóminas, los contratos y la constitución de sociedades: del papeleo de alta al primer contrato del primer empleado. Se incorporó al despacho en 2017.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CONTACTO + PIE -->
+  <section id="contacto" class="contacto">
+    <div class="container">
+      <p class="eyebrow">Escríbenos</p>
+      <h2 class="titular" style="font-size:var(--fs-h2); margin-top:.8rem;" data-char-reveal>
+        <span class="linea"><span class="palabra">Trae</span> <span class="palabra">el</span> <span class="palabra">papel,</span></span>
+        <span class="linea"><span class="palabra">nosotros</span> <span class="palabra">ponemos</span> <span class="palabra">el</span> <span class="palabra">sello.</span></span>
+      </h2>
+
+      <div class="contacto-grid" style="margin-top:clamp(2rem,5vw,3.4rem);">
+        <div>
+          <ul class="ficha mono">
+            <li><span class="etq">Despacho</span><span>Bértola Asesores, S.L.<br>Rúa do Pombal, 9, 1º dereita<br>15300 Betanzos (A Coruña)</span></li>
+            <li><span class="etq">Teléfono</span><a href="tel:+34981000045">981 00 00 45</a></li>
+            <li><span class="etq">WhatsApp</span><a data-wa href="https://wa.me/34611000045?text=Hola%2C%20querr%C3%ADa%20pedir%20cita%20con%20B%C3%A9rtola%20Asesores">611 00 00 45</a></li>
+            <li><span class="etq">Correo</span><a href="mailto:hola@bertolaasesores.example">hola@bertolaasesores.example</a></li>
+            <li><span class="etq">Horario</span><span>Lunes a viernes, 9:00–14:00 y 16:00–19:00</span></li>
+            <li><span class="etq">CIF</span><span>B15000000 (de muestra)</span></li>
+          </ul>
+          <div class="contacto-acciones">
+            <a class="btn btn-rojo btn-mag" data-wa href="https://wa.me/34611000045?text=Hola%2C%20querr%C3%ADa%20pedir%20cita%20con%20B%C3%A9rtola%20Asesores">Pedir cita por WhatsApp</a>
+            <a class="btn btn-fantasma" href="tel:+34981000045">Llamar ahora</a>
+          </div>
+        </div>
+
+        <div class="mapa-caja" id="mapa-caja">
+          <div class="mapa-consentimiento" id="mapa-consentimiento">
+            <p class="mono" style="color:var(--papel); font-size:.85rem; letter-spacing:.04em;">MAPA</p>
+            <p>El mapa carga un iframe de Google Maps solo cuando lo pides — así no se cargan cookies de terceros por defecto.</p>
+            <button class="btn btn-fantasma" id="mapa-boton" type="button">Mostrar mapa</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pie">
+        <div class="pie-filas">
+          <a class="pie-marca marca" href="#inicio">
+            <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+              <circle class="sello-anillo grueso" cx="100" cy="100" r="92" filter="url(#grano-tampon)"/>
+              <circle class="sello-anillo fino" cx="100" cy="100" r="76" filter="url(#grano-tampon)"/>
+              <g fill="var(--rojo)" filter="url(#grano-tampon)">
+                <rect x="70" y="56" width="14" height="88" rx="4"/>
+                <path fill-rule="evenodd" d="M78 56 h20 c16 0 26 9 26 22 c0 10 -6 17 -15 20 c11 3 18 11 18 22 c0 14 -11 24 -28 24 h-21 z
+                   M84 68 v26 h14 c9 0 14 -5 14 -13 c0 -8 -5 -13 -14 -13 z
+                   M84 106 v26 h16 c10 0 16 -5 16 -13 c0 -8 -6 -13 -16 -13 z"/>
+              </g>
+            </svg>
+            <span class="mono" style="font-size:.85rem;">Bértola Asesores</span>
+          </a>
+          <nav class="pie-enlaces" aria-label="Pie de página">
+            <a href="#servicios">Servicios</a>
+            <a href="#calendario">Calendario fiscal</a>
+            <a href="legal.html">Aviso legal</a>
+            <a href="legal.html#privacidad">Privacidad</a>
+            <a href="legal.html#cookies">Cookies</a>
+          </nav>
+        </div>
+        <p class="pie-demo">
+          <strong>Sitio de demostración.</strong> Bértola Asesores es un negocio ficticio; los datos, las ilustraciones y las opiniones son de muestra, creados para una biblioteca de plantillas web. No representa a ninguna gestoría real de Betanzos ni de ningún otro lugar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<a class="wa-flotante btn-mag" data-wa href="https://wa.me/34611000045?text=Hola%2C%20querr%C3%ADa%20pedir%20cita%20con%20B%C3%A9rtola%20Asesores" aria-label="Escribir por WhatsApp a Bértola Asesores">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.23.6 4.32 1.65 6.12L4 29l8.06-1.6a12 12 0 0 0 3.96.68c6.63 0 12.02-5.4 12.02-12.06C28.04 8.4 22.65 3 16.02 3zm0 21.86c-1.96 0-3.78-.55-5.33-1.5l-.38-.22-4.24.84.86-4.14-.25-.4a9.9 9.9 0 0 1-1.5-5.42c0-5.5 4.5-9.98 10-9.98s9.98 4.48 9.98 9.98-4.48 9.84-9.14 9.84zm5.46-7.46c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.96 1.17-.18.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.9-.8-1.5-1.79-1.68-2.09-.18-.3-.02-.46.13-.6.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.24-.24-.58-.49-.5-.68-.5h-.58c-.2 0-.53.07-.8.38-.28.3-1.05 1.02-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.16 4.55.72.31 1.28.5 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
+</a>
+
+<div class="cookie-banner" id="cookie-banner" hidden>
+  <p>Usamos solo lo imprescindible para que la web funcione. El mapa de la sección de contacto carga un iframe de Google Maps, pero solo si tú lo pides. No usamos cookies de analítica ni de publicidad.</p>
+  <div class="acciones">
+    <button class="btn" id="cookie-config" type="button">Solo esenciales</button>
+    <button class="btn btn-rojo" id="cookie-ok" type="button">De acuerdo</button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

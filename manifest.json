@@ -1,0 +1,16 @@
+{
+  "name": "Bértola Asesores",
+  "short_name": "Bértola",
+  "description": "Gestoría fiscal, laboral y contable en Betanzos (A Coruña). Sitio de demostración ficticio.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F2EDE1",
+  "theme_color": "#F2EDE1",
+  "lang": "es",
+  "icons": [
+    { "src": "assets/img/logo/icon-96.png", "sizes": "96x96", "type": "image/png" },
+    { "src": "assets/img/logo/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/img/logo/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Bértola Asesores">
+  <rect width="200" height="200" fill="#F2EDE1"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#A8503E" stroke-width="9"/>
+  <g fill="#A8503E">
+    <rect x="70" y="56" width="14" height="88" rx="4"/>
+    <path fill-rule="evenodd" d="M78 56 h20 c16 0 26 9 26 22 c0 10 -6 17 -15 20 c11 3 18 11 18 22 c0 14 -11 24 -28 24 h-21 z
+       M84 68 v26 h14 c9 0 14 -5 14 -13 c0 -8 -5 -13 -14 -13 z
+       M84 106 v26 h16 c10 0 16 -5 16 -13 c0 -8 -6 -13 -16 -13 z"/>
+  </g>
+</svg>

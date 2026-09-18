@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- Sitio de demostración. Bértola Asesores es un negocio ficticio. Ver README.md. -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Página no encontrada — Bértola Asesores</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F2EDE1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<svg class="sello-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="grano-tampon" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="11" result="ruido"/>
+      <feColorMatrix in="ruido" type="matrix"
+        values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.1 1.1 1.1 0 -0.62" result="mascara"/>
+      <feComposite in="SourceGraphic" in2="mascara" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<header class="cabecera">
+  <div class="container cabecera-fila">
+    <a class="marca" href="index.html">
+      <svg class="marca-icono" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+        <circle class="sello-anillo grueso" cx="100" cy="100" r="92" filter="url(#grano-tampon)"/>
+        <circle class="sello-anillo fino" cx="100" cy="100" r="76" filter="url(#grano-tampon)"/>
+        <g fill="var(--rojo)" filter="url(#grano-tampon)">
+          <rect x="70" y="56" width="14" height="88" rx="4"/>
+          <path fill-rule="evenodd" d="M78 56 h20 c16 0 26 9 26 22 c0 10 -6 17 -15 20 c11 3 18 11 18 22 c0 14 -11 24 -28 24 h-21 z
+             M84 68 v26 h14 c9 0 14 -5 14 -13 c0 -8 -5 -13 -14 -13 z
+             M84 106 v26 h16 c10 0 16 -5 16 -13 c0 -8 -6 -13 -16 -13 z"/>
+        </g>
+      </svg>
+      <span>
+        <span class="marca-nombre">Bértola Asesores</span>
+        <span class="marca-lugar">Betanzos · A Coruña</span>
+      </span>
+    </a>
+  </div>
+</header>
+
+<main class="container pagina-404">
+  <div class="sello sello-grande golpeado" style="margin-inline:auto;">
+    <svg class="sello-svg" viewBox="0 0 220 220" aria-hidden="true">
+      <circle class="sello-anillo grueso" cx="110" cy="110" r="96" filter="url(#grano-tampon)"/>
+      <circle class="sello-anillo fino" cx="110" cy="110" r="80" filter="url(#grano-tampon)"/>
+      <text class="sello-centro" x="110" y="112" font-size="20">NO</text>
+      <text class="sello-centro" x="110" y="140" font-size="20">CONSTA</text>
+    </svg>
+  </div>
+  <h1 class="titular" style="font-size:var(--fs-h2);">Esta página no está en el expediente</h1>
+  <p class="lead" style="margin-inline:auto;">El enlace puede estar mal escrito o la página puede haberse movido. Vuelve al inicio y busca desde allí.</p>
+  <p><a class="btn btn-rojo" href="index.html">Volver al inicio</a></p>
+</main>
+
+<footer class="pie container" style="padding-block:2rem 3rem;">
+  <p class="pie-demo"><strong>Sitio de demostración.</strong> Bértola Asesores es un negocio ficticio; los datos, las ilustraciones y las opiniones son de muestra, creados para una biblioteca de plantillas web.</p>
+</footer>
+</body>
+</html>

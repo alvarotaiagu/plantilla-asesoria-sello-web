@@ -1,0 +1,55 @@
+{
+  "consoleErrors": [
+    "[sin-gsap] Failed to load resource: net::ERR_FAILED",
+    "[sin-gsap] Failed to load resource: net::ERR_FAILED"
+  ],
+  "peticionesFallidas": [
+    "[sin-gsap] https://unpkg.com/lenis@1.1.18/dist/lenis.min.js — net::ERR_FAILED",
+    "[sin-gsap] https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js — net::ERR_FAILED"
+  ],
+  "notas": [],
+  "comprobaciones": {
+    "clases-escritorio": {
+      "jsMotion": true,
+      "gsapListo": true
+    },
+    "sellos-sin-estampar-escritorio": 0,
+    "filas-calendario-escritorio": 9,
+    "mapa-bajo-clic": {
+      "iframesAntes": 0,
+      "iframesDespues": 1,
+      "srcMapa": "https://www.google.com/maps?q=B%C3%A9rtola%20Asesores%2C%20R%C3%BAa%20do%20Pombal%209%2C%2015300%20Betanzos%2C%20A%20Coru%C3%B1a&output=embed"
+    },
+    "clases-movil": {
+      "jsMotion": true,
+      "gsapListo": true
+    },
+    "sellos-sin-estampar-movil": 0,
+    "filas-calendario-movil": 9,
+    "menu-movil-abre": {
+      "expandido": "true",
+      "abierto": true
+    },
+    "menu-movil-cierra": "false",
+    "cookie-banner": {
+      "visibleAntes": true,
+      "hiddenDespues": "",
+      "guardado": "aceptado"
+    },
+    "sin-gsap": {
+      "jsMotion": true,
+      "gsapListo": false,
+      "cortinaOculta": true
+    },
+    "reduced-motion": {
+      "jsMotion": false,
+      "cortinaOculta": true
+    },
+    "reduced-motion-calendario-cifra": "31 días",
+    "marcadores-pendientes": []
+  },
+  "resumen": {
+    "erroresConsola": 2,
+    "peticionesFallidas": 2
+  }
+}

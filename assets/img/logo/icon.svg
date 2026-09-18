@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Sello de Bértola Asesores">
+  <defs>
+    <filter id="grano-tampon" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="11" result="ruido"/>
+      <feColorMatrix in="ruido" type="matrix"
+        values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.1 1.1 1.1 0 -0.62" result="mascara"/>
+      <feComposite in="SourceGraphic" in2="mascara" operator="in"/>
+    </filter>
+  </defs>
+  <rect width="200" height="200" fill="none"/>
+  <g filter="url(#grano-tampon)" fill="#A8503E">
+    <circle cx="100" cy="100" r="92" fill="none" stroke="#A8503E" stroke-width="7"/>
+    <circle cx="100" cy="100" r="76" fill="none" stroke="#A8503E" stroke-width="3"/>
+    <!-- monograma B: barra + dos vientres -->
+    <rect x="70" y="56" width="14" height="88" rx="4"/>
+    <path d="M78 56 h20 c16 0 26 9 26 22 c0 10 -6 17 -15 20 c11 3 18 11 18 22 c0 14 -11 24 -28 24 h-21 z
+             M84 68 v26 h14 c9 0 14 -5 14 -13 c0 -8 -5 -13 -14 -13 z
+             M84 106 v26 h16 c10 0 16 -5 16 -13 c0 -8 -6 -13 -16 -13 z"
+      fill-rule="evenodd"/>
+  </g>
+</svg>
