@@ -60,9 +60,10 @@ historial del repo. Ningún texto se apaga con `opacity`: el token
 - **Fraunces** (600) — titulares, wordmark, texto de los sellos.
 - **Space Mono** — cifras, fechas, números de expediente (`tabular-nums`).
 
-Se comprobó que Fraunces (peso 600, sin cursiva) trae `€`, `ñ`, tildes y
-comillas latinas antes de cerrar la tipografía — la trampa conocida del
-pliego es la cursiva, que aquí no se usa en ningún sitio.
+Se comprobó que Fraunces (peso 600, sin cursiva) y Space Mono traen `€`,
+`ñ`, tildes y comillas latinas antes de cerrar la tipografía — captura en
+`screenshots/glifos-test.png`. La trampa conocida del pliego es la
+cursiva de Fraunces, que aquí no se usa en ningún sitio.
 
 ## Estructura (7 secciones, en este orden)
 

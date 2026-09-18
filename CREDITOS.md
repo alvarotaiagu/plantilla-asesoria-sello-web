@@ -20,8 +20,11 @@ SVG propio, dibujado a mano para este repositorio:
   Open Font License.
 
 Se comprobó antes de cerrar la plantilla que Fraunces (peso 600, sin
-cursiva) renderiza correctamente `€`, `ñ`, tildes y `«»` — ver `og.png` en
-`assets/img/logo/`, generado con el propio texto de la web.
+cursiva) y Space Mono renderizan correctamente `€`, `ñ`, á/é/í/ó/ú/ü y
+`« »` — captura de la comprobación en `screenshots/glifos-test.png`. La
+web en sí no muestra ningún importe en euros (una gestoría no cotiza
+precio en la portada), pero el glifo estaba comprobado por si se añade en
+un reskin.
 
 ## Librerías
 
