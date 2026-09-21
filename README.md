@@ -208,8 +208,8 @@ desaparece: sigue disponible como una 4ª opción del mando, renombrada
 **«Terracota»** — y no «Rojo», para no confundirla con el nuevo botón
 por defecto («Rojo D&F»), que también es un rojo.
 
-Las cuatro paletas (solo cambia el rojo de marca; papel y tinta son
-idénticos en las cuatro):
+Las cuatro paletas (la tinta `--tinta` es idéntica en las cuatro; el
+papel YA NO lo es — ver "Actualización" más abajo):
 
 - **Rojo D&F** (por defecto, sin clase): `--rojo:#9C2A2E`,
   `--rojo-texto:#7A1418`, `--rojo-oscuro:#3E0B0D` — el rojo real de
@@ -221,6 +221,22 @@ idénticos en las cuatro):
   oficial.
 - **Musgo** (`paleta-musgo`): `--rojo:#41763D` — verde musgo, también
   plausible como tinta de sello.
+
+**Actualización del mismo día (21-09-2026, por la tarde):** Dourado &
+Fernández también tienen el papel de su sitio en blanco puro
+(`#FFFFFF`), no el crema cálido nativo de "Sello". Como el objetivo de
+poner su rojo por defecto es que la comparación por email muestre una
+vista previa fiel de "así se vería tu web con tus colores exactos", el
+papel tenía que ir con el rojo: mostrar el acento de D&F sobre un fondo
+cálido que no es el suyo no era una vista previa de verdad. Por eso el
+`:root` (sin clase, "Rojo D&F") cambia también `--papel`/`--crema` a
+`#FFFFFF` y `--panel` a `#F2F0EA` (el mismo `--crema`/`--papel-claro` y
+`--crema-2` que usa el sitio real de D&F). Las otras tres clases
+(`paleta-original`, `paleta-anil`, `paleta-musgo`) ahora fijan su propio
+`--papel:#F2EDE1` / `--panel:#EAE3D3` / `--crema:#F8F4EA` para conservar
+el papel cálido nativo de "Sello" — Añil y Musgo son tintas alternativas
+del propio diseño, no vistas previas de D&F, así que no deben heredar el
+blanco del `:root`.
 
 La paleta elegida se guarda en `localStorage` (`sello-paleta`, valores
 `rojo` / `original` / `anil` / `musgo`) y se reaplica en la carga
@@ -242,11 +258,12 @@ DEMOSTRACIÓN" / "BLOQUE DE DEMOSTRACIÓN"):
    el bloque `.paleta { … }` / `.paleta-botones { … }` (junto a
    `.wa-flotante`). También se puede quitar `--cookie-h` de `:root` si
    nada más lo usa ya. **Importante:** si se quita este bloque, hay que
-   decidir aparte si el `:root` se queda con el rojo de Dourado & Fernández
-   o si se revierte a `--rojo:#A8503E` / `--rojo-texto:#8F4435` /
-   `--rojo-oscuro:#7C3A2B` (el nativo de «Sello», hoy solo alcanzable vía
-   `paleta-original`) — el mando deja de existir, pero el valor del
-   `:root` no vuelve solo al original.
+   decidir aparte si el `:root` se queda con el rojo (y el papel blanco)
+   de Dourado & Fernández o si se revierte a `--rojo:#A8503E` /
+   `--rojo-texto:#8F4435` / `--rojo-oscuro:#7C3A2B` / `--papel:#F2EDE1` /
+   `--panel:#EAE3D3` / `--crema:#F8F4EA` (los valores nativos de «Sello»,
+   hoy solo alcanzables vía `paleta-original`) — el mando deja de
+   existir, pero el `:root` no vuelve solo al original.
 4. En `js/main.js`: la función `initPaleta()` completa, dentro de la
    sección 1 (justo después de `cookies()`).
 

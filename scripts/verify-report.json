@@ -4,7 +4,6 @@
     "[sin-gsap] Failed to load resource: net::ERR_FAILED"
   ],
   "peticionesFallidas": [
-    "[normal-escritorio] https://www.google.com/maps/embed?origin=mfe&pb=!1m2!2m1!1sB%C3%A9rtola+Asesores,+R%C3%BAa+do+Pombal+9,+15300+Betanzos,+A+Coru%C3%B1a — net::ERR_ABORTED",
     "[sin-gsap] https://unpkg.com/lenis@1.1.18/dist/lenis.min.js — net::ERR_FAILED",
     "[sin-gsap] https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js — net::ERR_FAILED"
   ],
@@ -71,6 +70,6 @@
   },
   "resumen": {
     "erroresConsola": 2,
-    "peticionesFallidas": 3
+    "peticionesFallidas": 2
   }
 }

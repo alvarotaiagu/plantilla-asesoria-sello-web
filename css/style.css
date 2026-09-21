@@ -6,12 +6,25 @@
 
 /* ---------- Tokens ---------- */
 :root{
-  --papel:#F2EDE1;
-  --panel:#EAE3D3;
-  --crema:#F8F4EA;
+  --papel:#FFFFFF;       /* blanco puro: el papel real de Dourado & Fernández
+                             (--crema/--papel-claro de su sitio), no el crema
+                             cálido nativo de "Sello" — para que la vista
+                             previa por defecto sea su web de verdad, no solo
+                             su rojo sobre un fondo ajeno. Ver bloque de
+                             control de paleta más abajo */
+  --panel:#F2F0EA;        /* gris cálido casi blanco: --crema-2 de D&F,
+                             usado igual que en su sitio para diferenciar
+                             secciones (p.ej. .calendario) sin volver al
+                             crema cálido nativo */
+  --crema:#FFFFFF;        /* mismo blanco que --papel: en el sitio real de
+                             D&F, --crema y --papel-claro (fondo de tarjetas)
+                             son el mismo blanco */
   --linea:#D9CFBC;
   --tinta:#1F2A24;
-  --muted:#5A6159;       /* AA 5.47:1 sobre --papel, 5.81:1 sobre --crema */
+  --muted:#5A6159;       /* AA 6.39:1 sobre --papel/--crema (blanco) en Rojo
+                             D&F; 5.47:1/5.81:1 sobre el papel/crema nativos
+                             de Terracota — ver esos valores en
+                             html.paleta-original más abajo */
   --rojo:#9C2A2E;        /* marca: sellos, rellenos, filetes. Rojo real de
                              Dourado & Fernández (--oro de su sitio), puesto
                              aquí como paleta por defecto — ver bloque de
@@ -45,9 +58,13 @@
 
 /* -------------------------- Control de paleta --------------------------
    BLOQUE DE DEMOSTRACIÓN: se borra entero al entregar la web ya como
-   oficial (ver README, "El control de paleta"). Solo cambia el rojo de
-   marca — el papel y la tinta son los mismos en las cuatro, y el sello del
-   logo real no cambia de color con el mando.
+   oficial (ver README, "El control de paleta"). La tinta (--tinta) es la
+   misma en las cuatro y el sello del logo real no cambia de color con el
+   mando. El papel YA NO es igual en las cuatro desde el 21-09-2026: las
+   tres clases de abajo (Terracota/Añil/Musgo) restauran el papel/panel/
+   crema cálidos nativos de "Sello", mientras que el :root de arriba (sin
+   clase, "Rojo D&F") se queda con blanco puro — el papel real de Dourado &
+   Fernández, no un color de marca ajeno sobre un fondo que no es el suyo.
    Desde el 21-09-2026 el :root de arriba lleva el rojo real de Dourado &
    Fernández como paleta POR DEFECTO (sin clase), para la ronda de
    comparación por email de las 7 plantillas de asesoría. El rojo nativo
@@ -55,16 +72,31 @@
    ser una clase explícita más, "Terracota", para no confundirse con el
    botón "Rojo D&F" en el mando. */
 html.paleta-original {
+  --papel:#F2EDE1;       /* papel/panel/crema nativos de "Sello", los mismos
+                             valores que llevaba el :root antes del
+                             21-09-2026 — ver el bloque de arriba para las
+                             notas de contraste originales */
+  --panel:#EAE3D3;
+  --crema:#F8F4EA;
   --rojo:#A8503E;        /* rojo nativo de "Sello": tampón/terracota — 4.63:1 sobre papel */
   --rojo-texto:#8F4435;  /* 5.90:1 sobre --papel */
   --rojo-oscuro:#7C3A2B;
 }
 html.paleta-anil {
+  --papel:#F2EDE1;       /* papel nativo de "Sello": Añil es una tinta
+                             alternativa sobre el diseño propio, no una
+                             vista previa de D&F, así que conserva el
+                             mismo papel cálido que Terracota */
+  --panel:#EAE3D3;
+  --crema:#F8F4EA;
   --rojo:#4368B4;        /* 4.64:1 sobre papel, 4.93:1 sobre crema */
   --rojo-texto:#385999;  /* 5.88:1 sobre papel */
   --rojo-oscuro:#304C82;
 }
 html.paleta-musgo {
+  --papel:#F2EDE1;       /* mismo papel nativo que Terracota/Añil — ver nota en html.paleta-anil */
+  --panel:#EAE3D3;
+  --crema:#F8F4EA;
   --rojo:#41763D;        /* 4.63:1 sobre papel, 4.92:1 sobre crema */
   --rojo-texto:#386434;  /* 5.91:1 sobre papel */
   --rojo-oscuro:#2D512A;
