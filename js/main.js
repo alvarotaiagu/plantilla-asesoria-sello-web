@@ -58,25 +58,29 @@
 
   /* ---------------------------------------------------------------------
      Control de paleta (demostración). NO ES PARTE DEL SITIO: es un mando
-     para enseñar la misma web en tres paletas de color delante del
-     cliente mientras decide. Al entregar la web ya como oficial se borra
-     esta función, el bloque .paleta del CSS, el <div id="paleta"> del
-     HTML y la bandera del <head>.
+     para enseñar la misma web en cuatro paletas de color delante del
+     cliente mientras decide. "rojo" (sin clase) es el rojo real de
+     Dourado & Fernández y es la paleta por defecto desde el 21-09-2026;
+     "original" es el rojo nativo de "Sello" (tampón/terracota). Al
+     entregar la web ya como oficial se borra esta función, el bloque
+     .paleta del CSS, el <div id="paleta"> del HTML y la bandera del
+     <head>.
      ------------------------------------------------------------------- */
   (function initPaleta() {
     var caja = document.getElementById('paleta');
     var botones = {
       rojo: document.getElementById('paleta-rojo'),
+      original: document.getElementById('paleta-original'),
       anil: document.getElementById('paleta-anil'),
       musgo: document.getElementById('paleta-musgo')
     };
-    if (!caja || !botones.rojo || !botones.anil || !botones.musgo) return;
+    if (!caja || !botones.rojo || !botones.original || !botones.anil || !botones.musgo) return;
     var CLAVE_PALETA = 'sello-paleta';
 
     caja.hidden = false; // sin JS no se enseña: no haría nada
 
     function pintar(nombre, guardar) {
-      html.classList.remove('paleta-anil', 'paleta-musgo');
+      html.classList.remove('paleta-original', 'paleta-anil', 'paleta-musgo');
       if (nombre !== 'rojo') html.classList.add('paleta-' + nombre);
       Object.keys(botones).forEach(function (k) {
         botones[k].setAttribute('aria-pressed', String(k === nombre));
@@ -84,9 +88,10 @@
       if (guardar) { try { localStorage.setItem(CLAVE_PALETA, nombre); } catch (e) {} }
     }
 
-    var actual = html.classList.contains('paleta-anil') ? 'anil' : html.classList.contains('paleta-musgo') ? 'musgo' : 'rojo';
+    var actual = html.classList.contains('paleta-original') ? 'original' : html.classList.contains('paleta-anil') ? 'anil' : html.classList.contains('paleta-musgo') ? 'musgo' : 'rojo';
     pintar(actual, false);
     botones.rojo.addEventListener('click', function () { pintar('rojo', true); });
+    botones.original.addEventListener('click', function () { pintar('original', true); });
     botones.anil.addEventListener('click', function () { pintar('anil', true); });
     botones.musgo.addEventListener('click', function () { pintar('musgo', true); });
   })();

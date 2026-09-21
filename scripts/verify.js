@@ -195,12 +195,25 @@ function attachLoggers(page, bucket, etiqueta) {
     informe.comprobaciones['paleta-solapa-cookies'] = solapaConCookies;
     await page.screenshot({ path: path.join(OUT, 'escritorio-07-paleta-con-cookies.png') });
 
+    // por defecto (sin localStorage, sin clase) el :root ya es el rojo real
+    // de Dourado & Fernández — comprobar el hex exacto, no solo "es rojo",
+    // porque el rojo nativo de "Sello" también lo era.
+    const colorRojoPorDefecto = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--rojo').trim());
+    informe.comprobaciones['paleta-defecto-es-rojo-df'] = { colorRojoPorDefecto, esperado: '#9C2A2E', ok: colorRojoPorDefecto.toUpperCase() === '#9C2A2E' };
+
     const colorRojo = await page.evaluate(() => getComputedStyle(document.querySelector('.btn-rojo')).backgroundColor);
+    await page.click('#paleta-original');
+    await page.waitForTimeout(200);
+    const colorOriginalHex = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--rojo').trim());
+    const colorOriginal = await page.evaluate(() => getComputedStyle(document.querySelector('.btn-rojo')).backgroundColor);
+    informe.comprobaciones['paleta-original-es-terracota'] = { colorOriginalHex, esperado: '#A8503E', ok: colorOriginalHex.toUpperCase() === '#A8503E' };
+    await page.screenshot({ path: path.join(OUT, 'escritorio-07-paleta-original.png') });
+
     await page.click('#paleta-anil');
     await page.waitForTimeout(200);
     const colorAnil = await page.evaluate(() => getComputedStyle(document.querySelector('.btn-rojo')).backgroundColor);
     const guardadoPaleta = await page.evaluate(() => localStorage.getItem('sello-paleta'));
-    informe.comprobaciones['paleta-cambia-color'] = { colorRojo, colorAnil, cambia: colorRojo !== colorAnil, guardadoPaleta };
+    informe.comprobaciones['paleta-cambia-color'] = { colorRojo, colorOriginal, colorAnil, cambia: colorRojo !== colorAnil && colorRojo !== colorOriginal && colorOriginal !== colorAnil, guardadoPaleta };
     await page.screenshot({ path: path.join(OUT, 'escritorio-07-paleta-anil.png') });
 
     // recarga: la paleta guardada debe aplicarse antes del primer paint, sin salto
@@ -208,7 +221,11 @@ function attachLoggers(page, bucket, etiqueta) {
     const claseInmediata = await page.evaluate(() => document.documentElement.classList.contains('paleta-anil'));
     informe.comprobaciones['paleta-sin-flash-al-recargar'] = claseInmediata;
     await page.waitForLoadState('networkidle');
-    await page.click('#paleta-rojo'); // deja el sitio en el color real de la marca
+    await page.click('#paleta-musgo');
+    await page.waitForTimeout(200);
+    const colorMusgo = await page.evaluate(() => getComputedStyle(document.querySelector('.btn-rojo')).backgroundColor);
+    informe.comprobaciones['paleta-musgo-distinto'] = colorMusgo !== colorAnil;
+    await page.click('#paleta-rojo'); // deja el sitio en el color real de D&F, el nuevo por defecto
     await ctx.close();
   }
 

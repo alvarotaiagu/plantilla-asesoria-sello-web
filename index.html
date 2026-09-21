@@ -52,7 +52,7 @@
    quitarlo al entregar la web ya como oficial. */
 try {
   var p = localStorage.getItem('sello-paleta');
-  if (p === 'anil' || p === 'musgo') document.documentElement.classList.add('paleta-' + p);
+  if (p === 'original' || p === 'anil' || p === 'musgo') document.documentElement.classList.add('paleta-' + p);
 } catch (e) {}
 </script>
 </head>
@@ -542,14 +542,19 @@ try {
 
 <!-- ===================== CONTROL DE PALETA =====================
      Esto NO es parte del sitio: es un mando para enseñar la misma web con
-     tres paletas de color distintas delante del cliente, mientras decide.
-     Al entregar la web ya como oficial se borra este bloque, el bloque
-     .paleta del CSS, la función initPaleta() de main.js y la bandera del
-     <head>. Viene con [hidden]: sin JS no aparece, porque no haría nada. -->
+     cuatro paletas de color distintas delante del cliente, mientras decide.
+     Por defecto (sin clase) sale el rojo real de Dourado & Fernández, para
+     la ronda de comparación por email de las 7 plantillas de asesoría;
+     "Terracota" es el rojo nativo de "Sello" (el de tampón, el original de
+     esta plantilla). Al entregar la web ya como oficial se borra este
+     bloque, el bloque .paleta del CSS, la función initPaleta() de main.js
+     y la bandera del <head>. Viene con [hidden]: sin JS no aparece, porque
+     no haría nada. -->
 <div class="paleta" id="paleta" hidden>
   <p class="paleta-rotulo">Paleta</p>
   <div class="paleta-botones" role="group" aria-label="Paleta de color de la maqueta">
-    <button type="button" id="paleta-rojo" aria-pressed="true">Rojo</button>
+    <button type="button" id="paleta-rojo" aria-pressed="true">Rojo D&amp;F</button>
+    <button type="button" id="paleta-original" aria-pressed="false">Terracota</button>
     <button type="button" id="paleta-anil" aria-pressed="false">Añil</button>
     <button type="button" id="paleta-musgo" aria-pressed="false">Musgo</button>
   </div>

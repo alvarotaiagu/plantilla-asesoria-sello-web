@@ -55,6 +55,12 @@ luminance) antes de escribir el CSS, no a ojo — ver el cálculo en el
 historial del repo. Ningún texto se apaga con `opacity`: el token
 `--muted` es un color propio, auditable.
 
+`--rojo`/`--rojo-texto`/`--rojo-oscuro` de la tabla son el rojo **nativo**
+del concepto «Sello» (tampón/terracota) — pero desde el 21-09-2026 no son
+los valores que salen por defecto en `:root`: ver "El control de paleta"
+más abajo, donde este rojo nativo vive como la opción "Terracota" y el
+rojo real de Dourado & Fernández ocupa el `:root` sin clase.
+
 ## Tipografía
 
 - **Fraunces** (600) — titulares, wordmark, texto de los sellos.
@@ -185,24 +191,43 @@ fijo, que sí da una X limpia.
 
 Desde el 21-09-2026, PLIEGO §5 («Control de paleta») exige un mando de
 demostración en toda la biblioteca: una píldora flotante, abajo a la
-izquierda, que deja enseñar la misma maqueta con tres colores de marca
+izquierda, que deja enseñar la misma maqueta con varios colores de marca
 distintos delante del cliente mientras decide, sin tocar CSS en directo.
 Nació porque un cliente real (Dourado & Fernández) rechazó el verde de su
-sitio en una reunión — aquí no hay cliente real, pero la plantilla lleva
-el mismo mando para que cualquier futuro cliente pueda probarlo.
+sitio en una reunión.
 
-Las tres paletas (solo cambia el rojo de marca; papel y tinta son
-idénticos en las tres):
+**Actualización del mismo día (21-09-2026):** las 7 plantillas de
+asesoría/gestoría se envían por email a Dourado & Fernández para que
+elijan qué ESTRUCTURA/CONCEPTO prefieren para un futuro sitio propio.
+Como ya tienen marca — un rojo ladrillo concreto (`--oro:#9C2A2E` en su
+propio sitio) —, ese rojo pasa a ser la paleta **por defecto** (sin clase,
+en el `:root`) en las 7 plantillas: así el color deja de ser una variable
+en la comparación y solo se juzga la estructura. El rojo nativo de
+«Sello» (el de tampón/terracota, el original de este diseño) no
+desaparece: sigue disponible como una 4ª opción del mando, renombrada
+**«Terracota»** — y no «Rojo», para no confundirla con el nuevo botón
+por defecto («Rojo D&F»), que también es un rojo.
 
-- **Rojo** (por defecto): `--rojo:#A8503E` — el rojo de sello/tampón, el
-  real del diseño.
-- **Añil**: `--rojo:#4368B4` — azul índigo de tinta oficial.
-- **Musgo**: `--rojo:#41763D` — verde musgo, también plausible como tinta
-  de sello.
+Las cuatro paletas (solo cambia el rojo de marca; papel y tinta son
+idénticos en las cuatro):
 
-La paleta elegida se guarda en `localStorage` (`sello-paleta`) y se
-reaplica en la carga siguiente mediante un script bloqueante en el
-`<head>`, antes del primer pintado — así no hay salto de un color a otro.
+- **Rojo D&F** (por defecto, sin clase): `--rojo:#9C2A2E`,
+  `--rojo-texto:#7A1418`, `--rojo-oscuro:#3E0B0D` — el rojo real de
+  Dourado & Fernández (`--oro`/`--oro-tinta`/`--verde-oscuro` de su
+  propio sitio).
+- **Terracota** (`paleta-original`): `--rojo:#A8503E` — el rojo de
+  sello/tampón, el nativo de este diseño.
+- **Añil** (`paleta-anil`): `--rojo:#4368B4` — azul índigo de tinta
+  oficial.
+- **Musgo** (`paleta-musgo`): `--rojo:#41763D` — verde musgo, también
+  plausible como tinta de sello.
+
+La paleta elegida se guarda en `localStorage` (`sello-paleta`, valores
+`rojo` / `original` / `anil` / `musgo`) y se reaplica en la carga
+siguiente mediante un script bloqueante en el `<head>`, antes del primer
+pintado — así no hay salto de un color a otro. `rojo` es el estado sin
+clase (el `:root` de por sí ya es el rojo de D&F), las otras tres añaden
+`html.paleta-original` / `html.paleta-anil` / `html.paleta-musgo`.
 
 **Para quitarlo al entregar la web ya como oficial**, borrar estas 4
 piezas (todas están marcadas con el mismo comentario "CONTROL DE
@@ -212,10 +237,16 @@ DEMOSTRACIÓN" / "BLOQUE DE DEMOSTRACIÓN"):
    `localStorage` (justo antes de `</head>`).
 2. En `index.html`: el bloque `<div class="paleta" id="paleta" hidden>…`
    (justo después del botón flotante de WhatsApp).
-3. En `css/style.css`: el bloque `html.paleta-anil { … } html.paleta-musgo
-   { … }` (justo después de que cierra `:root`) y el bloque `.paleta { … }`
-   / `.paleta-botones { … }` (junto a `.wa-flotante`). También se puede
-   quitar `--cookie-h` de `:root` si nada más lo usa ya.
+3. En `css/style.css`: el bloque `html.paleta-original { … } html.paleta-anil
+   { … } html.paleta-musgo { … }` (justo después de que cierra `:root`) y
+   el bloque `.paleta { … }` / `.paleta-botones { … }` (junto a
+   `.wa-flotante`). También se puede quitar `--cookie-h` de `:root` si
+   nada más lo usa ya. **Importante:** si se quita este bloque, hay que
+   decidir aparte si el `:root` se queda con el rojo de Dourado & Fernández
+   o si se revierte a `--rojo:#A8503E` / `--rojo-texto:#8F4435` /
+   `--rojo-oscuro:#7C3A2B` (el nativo de «Sello», hoy solo alcanzable vía
+   `paleta-original`) — el mando deja de existir, pero el valor del
+   `:root` no vuelve solo al original.
 4. En `js/main.js`: la función `initPaleta()` completa, dentro de la
    sección 1 (justo después de `cookies()`).
 
