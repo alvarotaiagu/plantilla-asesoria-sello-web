@@ -181,6 +181,44 @@ fijo, que sí da una X limpia.
    `node scripts/generate_icons.js` (necesita un servidor local sirviendo
    el repo, ver el propio script).
 
+## El control de paleta (demostración, quitar antes de dar la web por oficial)
+
+Desde el 21-09-2026, PLIEGO §5 («Control de paleta») exige un mando de
+demostración en toda la biblioteca: una píldora flotante, abajo a la
+izquierda, que deja enseñar la misma maqueta con tres colores de marca
+distintos delante del cliente mientras decide, sin tocar CSS en directo.
+Nació porque un cliente real (Dourado & Fernández) rechazó el verde de su
+sitio en una reunión — aquí no hay cliente real, pero la plantilla lleva
+el mismo mando para que cualquier futuro cliente pueda probarlo.
+
+Las tres paletas (solo cambia el rojo de marca; papel y tinta son
+idénticos en las tres):
+
+- **Rojo** (por defecto): `--rojo:#A8503E` — el rojo de sello/tampón, el
+  real del diseño.
+- **Añil**: `--rojo:#4368B4` — azul índigo de tinta oficial.
+- **Musgo**: `--rojo:#41763D` — verde musgo, también plausible como tinta
+  de sello.
+
+La paleta elegida se guarda en `localStorage` (`sello-paleta`) y se
+reaplica en la carga siguiente mediante un script bloqueante en el
+`<head>`, antes del primer pintado — así no hay salto de un color a otro.
+
+**Para quitarlo al entregar la web ya como oficial**, borrar estas 4
+piezas (todas están marcadas con el mismo comentario "CONTROL DE
+DEMOSTRACIÓN" / "BLOQUE DE DEMOSTRACIÓN"):
+
+1. En `index.html`: el `<script>` del `<head>` que lee `sello-paleta` de
+   `localStorage` (justo antes de `</head>`).
+2. En `index.html`: el bloque `<div class="paleta" id="paleta" hidden>…`
+   (justo después del botón flotante de WhatsApp).
+3. En `css/style.css`: el bloque `html.paleta-anil { … } html.paleta-musgo
+   { … }` (justo después de que cierra `:root`) y el bloque `.paleta { … }`
+   / `.paleta-botones { … }` (junto a `.wa-flotante`). También se puede
+   quitar `--cookie-h` de `:root` si nada más lo usa ya.
+4. En `js/main.js`: la función `initPaleta()` completa, dentro de la
+   sección 1 (justo después de `cookies()`).
+
 ## Verificación (PLIEGO §7)
 
 Ejecutada con Playwright (Chromium) contra un servidor estático local.
@@ -207,6 +245,12 @@ Ejecutada con Playwright (Chromium) contra un servidor estático local.
   y se cierra.
 - **Mapa**: 0 iframes antes de pulsar «Mostrar mapa», 1 después, apuntando
   a la dirección ficticia, sin API key.
+- **Control de paleta** (demostración, ver sección propia arriba): la
+  píldora no solapa el aviso de cookies mientras está abierto, un clic en
+  «Añil» cambia de verdad el color computado (`getComputedStyle`) del
+  botón de marca y guarda `sello-paleta` en `localStorage`, y al recargar
+  la clase `paleta-anil` ya está puesta en `document.documentElement`
+  justo tras `domcontentloaded` — sin salto de un color a otro.
 - **Sin marcadores pendientes**: se buscó `[PENDIENTE]`, `TODO`, `Lorem
   ipsum` y `NUMERO-PENDIENTE` en el texto renderizado — ninguno presente.
 - **Repaso del §1**: nombre comprobado en la web antes de fijarlo (ver

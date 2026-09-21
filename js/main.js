@@ -28,6 +28,15 @@
     var soloBtn = document.getElementById('cookie-config');
     if (!banner) return;
     var CLAVE = 'bertola-cookies';
+
+    /* mientras el aviso está abierto, aparta el mando de paleta hacia
+       arriba lo que mida el aviso, para que no quede tapado por él
+       (--cookie-h, ver css/style.css y el control de paleta más abajo) */
+    function ajustarOffsetCookie() {
+      var alto = banner.hidden ? 0 : banner.offsetHeight + 14;
+      html.style.setProperty('--cookie-h', alto + 'px');
+    }
+
     try {
       if (!localStorage.getItem(CLAVE)) {
         banner.hidden = false;
@@ -35,12 +44,51 @@
     } catch (e) {
       banner.hidden = false;
     }
+    requestAnimationFrame(ajustarOffsetCookie);
+    window.addEventListener('resize', ajustarOffsetCookie);
+
     function cerrar(valor) {
       banner.hidden = true;
+      ajustarOffsetCookie();
       try { localStorage.setItem(CLAVE, valor); } catch (e) {}
     }
     if (okBtn) okBtn.addEventListener('click', function () { cerrar('aceptado'); });
     if (soloBtn) soloBtn.addEventListener('click', function () { cerrar('solo-esenciales'); });
+  })();
+
+  /* ---------------------------------------------------------------------
+     Control de paleta (demostración). NO ES PARTE DEL SITIO: es un mando
+     para enseñar la misma web en tres paletas de color delante del
+     cliente mientras decide. Al entregar la web ya como oficial se borra
+     esta función, el bloque .paleta del CSS, el <div id="paleta"> del
+     HTML y la bandera del <head>.
+     ------------------------------------------------------------------- */
+  (function initPaleta() {
+    var caja = document.getElementById('paleta');
+    var botones = {
+      rojo: document.getElementById('paleta-rojo'),
+      anil: document.getElementById('paleta-anil'),
+      musgo: document.getElementById('paleta-musgo')
+    };
+    if (!caja || !botones.rojo || !botones.anil || !botones.musgo) return;
+    var CLAVE_PALETA = 'sello-paleta';
+
+    caja.hidden = false; // sin JS no se enseña: no haría nada
+
+    function pintar(nombre, guardar) {
+      html.classList.remove('paleta-anil', 'paleta-musgo');
+      if (nombre !== 'rojo') html.classList.add('paleta-' + nombre);
+      Object.keys(botones).forEach(function (k) {
+        botones[k].setAttribute('aria-pressed', String(k === nombre));
+      });
+      if (guardar) { try { localStorage.setItem(CLAVE_PALETA, nombre); } catch (e) {} }
+    }
+
+    var actual = html.classList.contains('paleta-anil') ? 'anil' : html.classList.contains('paleta-musgo') ? 'musgo' : 'rojo';
+    pintar(actual, false);
+    botones.rojo.addEventListener('click', function () { pintar('rojo', true); });
+    botones.anil.addEventListener('click', function () { pintar('anil', true); });
+    botones.musgo.addEventListener('click', function () { pintar('musgo', true); });
   })();
 
   /* ---------------------------------------------------------------------

@@ -16,6 +16,7 @@
   --rojo-texto:#8F4435;  /* variante de texto: 5.90:1 sobre --papel */
   --rojo-oscuro:#7C3A2B;
   --foco:#1F2A24;
+  --cookie-h:0px;        /* alto del aviso de cookies mientras está abierto; lo fija main.js */
 
   --ff-display:'Fraunces', Georgia, serif;
   --ff-mono:'Space Mono', 'Courier New', monospace;
@@ -37,6 +38,22 @@
   --ease-expo: cubic-bezier(.16, 1, .3, 1);
 
   color-scheme: light;
+}
+
+/* -------------------------- Control de paleta --------------------------
+   BLOQUE DE DEMOSTRACIÓN: se borra entero al entregar la web ya como
+   oficial (ver README, "El control de paleta"). Solo cambia el rojo de
+   marca — el papel y la tinta son los mismos en las tres, y el sello del
+   logo real no cambia de color con el mando. */
+html.paleta-anil {
+  --rojo:#4368B4;        /* 4.64:1 sobre papel, 4.93:1 sobre crema */
+  --rojo-texto:#385999;  /* 5.88:1 sobre papel */
+  --rojo-oscuro:#304C82;
+}
+html.paleta-musgo {
+  --rojo:#41763D;        /* 4.63:1 sobre papel, 4.92:1 sobre crema */
+  --rojo-texto:#386434;  /* 5.91:1 sobre papel */
+  --rojo-oscuro:#2D512A;
 }
 
 /* ---------- Reset ---------- */
@@ -446,6 +463,32 @@ html.motion-off .cinta-grupo{ animation:none; }
 }
 .wa-flotante:hover{ background:var(--rojo-oscuro); }
 .wa-flotante svg{ width:28px; height:28px; }
+
+/* ---------- Control de paleta (demostración, ver nota arriba en :root) ---------- */
+.paleta{ display:none; }
+.paleta:not([hidden]){
+  display:flex; position:fixed; z-index:90; left:1.2rem; bottom:calc(1.2rem + var(--cookie-h));
+  align-items:center; gap:.6rem; background:var(--crema); border:1px solid var(--linea);
+  border-radius:999px; padding:.4rem .5rem .4rem .9rem;
+  box-shadow:0 14px 30px -12px rgba(31,42,36,.28);
+  transition:bottom .3s ease;
+}
+.paleta-rotulo{
+  margin:0; font-family:var(--ff-mono); font-size:.62rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--muted);
+}
+.paleta-botones{ display:flex; gap:.3rem; }
+.paleta-botones button{
+  font-family:var(--ff-mono); font-size:.68rem; letter-spacing:.04em; cursor:pointer;
+  background:transparent; color:var(--tinta); border:1px solid var(--linea); border-radius:999px;
+  padding:.34rem .75rem; transition:background-color .2s, color .2s, border-color .2s;
+}
+.paleta-botones button:hover{ border-color:var(--tinta); }
+.paleta-botones button[aria-pressed="true"]{ background:var(--rojo); color:var(--crema); border-color:var(--rojo); }
+@media (max-width:480px){
+  .paleta:not([hidden]){ left:.9rem; bottom:calc(.9rem + var(--cookie-h)); padding:.3rem .4rem .3rem .7rem; }
+  .paleta-rotulo{ display:none; }
+}
 
 /* ---------- Página legal / 404 ---------- */
 .pagina-simple{ padding-block:calc(var(--space-section) * 1.2) var(--space-section); }

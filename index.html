@@ -45,6 +45,16 @@
 })();
 </script>
 <noscript><style>.cortina{ display:none !important; }</style></noscript>
+<script>
+/* Paleta elegida en el control de maqueta. Se resuelve aquí, antes de
+   pintar, o la página arrancaría en una paleta y saltaría a otra.
+   CONTROL DE DEMOSTRACIÓN: ver README, "El control de paleta", para
+   quitarlo al entregar la web ya como oficial. */
+try {
+  var p = localStorage.getItem('sello-paleta');
+  if (p === 'anil' || p === 'musgo') document.documentElement.classList.add('paleta-' + p);
+} catch (e) {}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -529,6 +539,21 @@
 <a class="wa-flotante btn-mag" data-wa href="https://wa.me/34611000045?text=Hola%2C%20querr%C3%ADa%20pedir%20cita%20con%20B%C3%A9rtola%20Asesores" aria-label="Escribir por WhatsApp a Bértola Asesores">
   <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.23.6 4.32 1.65 6.12L4 29l8.06-1.6a12 12 0 0 0 3.96.68c6.63 0 12.02-5.4 12.02-12.06C28.04 8.4 22.65 3 16.02 3zm0 21.86c-1.96 0-3.78-.55-5.33-1.5l-.38-.22-4.24.84.86-4.14-.25-.4a9.9 9.9 0 0 1-1.5-5.42c0-5.5 4.5-9.98 10-9.98s9.98 4.48 9.98 9.98-4.48 9.84-9.14 9.84zm5.46-7.46c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.96 1.17-.18.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.9-.8-1.5-1.79-1.68-2.09-.18-.3-.02-.46.13-.6.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.63-.93-2.24-.24-.58-.49-.5-.68-.5h-.58c-.2 0-.53.07-.8.38-.28.3-1.05 1.02-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.16 4.55.72.31 1.28.5 1.72.63.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
 </a>
+
+<!-- ===================== CONTROL DE PALETA =====================
+     Esto NO es parte del sitio: es un mando para enseñar la misma web con
+     tres paletas de color distintas delante del cliente, mientras decide.
+     Al entregar la web ya como oficial se borra este bloque, el bloque
+     .paleta del CSS, la función initPaleta() de main.js y la bandera del
+     <head>. Viene con [hidden]: sin JS no aparece, porque no haría nada. -->
+<div class="paleta" id="paleta" hidden>
+  <p class="paleta-rotulo">Paleta</p>
+  <div class="paleta-botones" role="group" aria-label="Paleta de color de la maqueta">
+    <button type="button" id="paleta-rojo" aria-pressed="true">Rojo</button>
+    <button type="button" id="paleta-anil" aria-pressed="false">Añil</button>
+    <button type="button" id="paleta-musgo" aria-pressed="false">Musgo</button>
+  </div>
+</div>
 
 <div class="cookie-banner" id="cookie-banner" hidden>
   <p>Usamos solo lo imprescindible para que la web funcione. El mapa de la sección de contacto carga un iframe de Google Maps, pero solo si tú lo pides. No usamos cookies de analítica ni de publicidad.</p>

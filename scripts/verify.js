@@ -179,6 +179,39 @@ function attachLoggers(page, bucket, etiqueta) {
     await ctx.close();
   }
 
+  /* ---------------- 7. Control de paleta (demostración) ---------------- */
+  {
+    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    const page = await ctx.newPage();
+    attachLoggers(page, informe, 'paleta');
+    await page.goto(BASE, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(800); // aviso de cookies visible en este contexto limpio
+
+    const solapaConCookies = await page.evaluate(() => {
+      const p = document.getElementById('paleta').getBoundingClientRect();
+      const c = document.getElementById('cookie-banner').getBoundingClientRect();
+      return !(p.right < c.left || p.left > c.right || p.bottom < c.top || p.top > c.bottom);
+    });
+    informe.comprobaciones['paleta-solapa-cookies'] = solapaConCookies;
+    await page.screenshot({ path: path.join(OUT, 'escritorio-07-paleta-con-cookies.png') });
+
+    const colorRojo = await page.evaluate(() => getComputedStyle(document.querySelector('.btn-rojo')).backgroundColor);
+    await page.click('#paleta-anil');
+    await page.waitForTimeout(200);
+    const colorAnil = await page.evaluate(() => getComputedStyle(document.querySelector('.btn-rojo')).backgroundColor);
+    const guardadoPaleta = await page.evaluate(() => localStorage.getItem('sello-paleta'));
+    informe.comprobaciones['paleta-cambia-color'] = { colorRojo, colorAnil, cambia: colorRojo !== colorAnil, guardadoPaleta };
+    await page.screenshot({ path: path.join(OUT, 'escritorio-07-paleta-anil.png') });
+
+    // recarga: la paleta guardada debe aplicarse antes del primer paint, sin salto
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    const claseInmediata = await page.evaluate(() => document.documentElement.classList.contains('paleta-anil'));
+    informe.comprobaciones['paleta-sin-flash-al-recargar'] = claseInmediata;
+    await page.waitForLoadState('networkidle');
+    await page.click('#paleta-rojo'); // deja el sitio en el color real de la marca
+    await ctx.close();
+  }
+
   /* ---------------- 8. Sin marcadores pendientes ---------------- */
   {
     const ctx = await browser.newContext();
